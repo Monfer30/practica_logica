@@ -62,11 +62,78 @@ console.log("the alarm is set for  " + seconds + " seconds");
 //Palindrome
 //Write a program that prompts for a word or sentence (it can be capitalized, have spaces and punctuation). Figure out if the sentence/word is a palindrome or not. Ignoring punctuation, spaces and capitalized letters.
 
-/*Factorial
-Write a program that prompts for an intenger number n. Where  1 <= n. Solve this using recursion.
 
-Flat array
-Write a program that takes the following nested matrix and flattens it (makes it a 1D array). Use any type of algorithm you want like callbacks, recursion, etc...
- * 
- */
+function isPalindrome(word) {
+  return word.toLowerCase().replace(/\s+/g, "").split("").reverse().join("") === word;
+}
 
+function main() {
+  word = prompt("Enter a word or phrase: ");
+
+  isPalindrome = isPalindrome(word);
+
+  if (isPalindrome) {
+    alert("The word '" + word + "' is a palindrome.");
+    console.log("the word '" + word + "' is a palindrome");
+  } else {
+    alert("The word '" + word + "' is not a palindrome.");
+    console.log("the word '" + word + "' is not a palindrome");
+  }
+}
+
+main();
+
+
+//Factorial
+//Write a program that prompts for an intenger number n. Where  1 <= n. Solve this using recursion.
+
+const promptForN = () => {
+  //prompt the user for an integer number n.
+  const n = prompt("Enter an integer number n: ");
+  //n is greater than or equal to 1.
+  while (n < 1) {
+    alert("Error: n must be greater than or equal to 1.");
+    n = prompt("Enter an integer number n: ");
+  }
+  return n;
+};
+
+const printNRecursively = (n) => {
+  //n is less than or equal to 0, return.
+  if (n <= 0) {
+    return;
+  }
+  console.log(n);
+  //recursively print n - 1.
+  printNRecursively(n - 1);
+};
+main = () => {
+  const n = promptForN();
+  printNRecursively(n);
+};
+
+main();
+
+//Flat array
+//Write a program that takes the following nested matrix and flattens it (makes it a 1D array). Use any type of algorithm you want like callbacks, recursion, etc...
+
+const array = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+//callbacks
+const flatten = (array, result = []) => {
+  for (const item of array) {
+    if (Array.isArray(item)) {
+      flatten(item, result);
+    } else {
+      result.push(item);
+    }
+  }
+
+  return result;
+};
+
+const flatArray = flatten(array);
+console.log(flatArray); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
